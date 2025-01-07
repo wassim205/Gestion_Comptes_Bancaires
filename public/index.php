@@ -6,10 +6,11 @@ session_start();
 require_once ('../core/BaseController.php');
 require_once '../core/Router.php';
 require_once '../core/Route.php';
-require_once '../app/controllers/HomeController.php';
+// require_once '../app/controllers/HomeController.php';
 require_once '../app/controllers/AuthController.php';
 require_once '../app/controllers/AdminController.php';
-require_once '../app/config/db.php';
+require_once '../app/controllers/ClientController.php';
+// require_once '../app/config/db.php';
 
 
 
@@ -19,7 +20,10 @@ Route::setRouter($router);
 
 
 // client Routes
-
+Route::get('/login', [AuthController::class, 'showLogin']);
+Route::post('/login', [AuthController::class, 'handleLogin']);
+Route::get('/Client' , [ClientController::class, 'index']);
+Route::get('/Admin' , [AdminController::class, 'index']);
 
 
 
