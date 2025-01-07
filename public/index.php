@@ -23,7 +23,8 @@ Route::setRouter($router);
 Route::get('/login', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'handleLogin']);
 Route::get('/Client' , [ClientController::class, 'index']);
-Route::get('/Admin' , [AdminController::class, 'index']);
+Route::get('/clients', [AdminController::class, 'getAllUsers']);
+
 
 
 

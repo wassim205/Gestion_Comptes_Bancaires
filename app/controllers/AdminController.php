@@ -1,11 +1,12 @@
 <?php 
 require_once (__DIR__.'/../models/User.php');
+require_once  (__DIR__."/../models/Admin.php");
 
 class AdminController extends BaseController {
-    private $UserModel ;
+    private $AdminModel ;
     public function __construct(){
 
-        $this->UserModel = new User();
+        $this->AdminModel = new Admin();
   
         
      }
@@ -20,7 +21,10 @@ class AdminController extends BaseController {
    }
    
 
-
+   public function getAllUsers(){
+      $users = $this->AdminModel->getUsers();
+      $this->renderAdmin('clients', ['users' => $users]);
+   }
 
 
 
