@@ -1,105 +1,14 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administration - Gestion des Clients</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-    <div class="flex min-h-screen">
-        <button 
-        onclick="toggleSidebar()"
-        class="lg:hidden fixed top-4 left-4 z-50 bg-gray-900 text-white p-2 rounded-lg"
-    >
-        <i data-lucide="menu" class="w-6 h-6"></i>
-    </button>
 
-    <!-- Sidebar avec classe pour contrôler la visibilité -->
-    <div id="sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 lg:relative lg:flex w-64 bg-gray-900 transition-transform duration-200 ease-in-out z-30">
-        <div class="flex flex-col h-full">
-            <div class="p-6">
-                <div class="flex items-center justify-between">
-                    <h1 class="text-2xl font-bold text-white">Admin Panel</h1>
-                    <button onclick="toggleSidebar()" class="lg:hidden text-white">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                <p class="text-gray-400 text-sm">Gestion bancaire</p>
-            </div>
+<?php
+include '../partials/admin/sidebar.php';
+?>
 
-            <!-- Navigation -->
-            <nav class="mt-6 flex-grow">
-                <a href="#" class="flex items-center w-full px-6 py-3 text-white bg-gray-800">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="clients.html" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-                    <i data-lucide="users" class="w-5 h-5 mr-3"></i>
-                    <span>Clients</span>
-                </a>
-                <a href="compte.html" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-                    <i data-lucide="credit-card" class="w-5 h-5 mr-3"></i>
-                    <span>Comptes</span>
-                </a>
-                <a href="transactions.html" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-                    <i data-lucide="repeat" class="w-5 h-5 mr-3"></i>
-                    <span>Transactions</span>
-                </a>
-                <a href="#" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-                    <i data-lucide="bell" class="w-5 h-5 mr-3"></i>
-                    <span>Notifications</span>
-                </a>
-                <a href="#" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-                    <i data-lucide="settings" class="w-5 h-5 mr-3"></i>
-                    <span>Paramètres</span>
-                </a>
-            </nav>
-
-            <!-- Profil Admin avec Déconnexion -->
-            <div class="border-t border-gray-800 p-6">
-                <div class="relative">
-                    <button 
-                        onclick="toggleProfileMenu()"
-                        class="flex items-center w-full text-white hover:bg-gray-800 rounded-lg p-2"
-                    >
-                        <img src="/api/placeholder/32/32" alt="Admin" class="w-8 h-8 rounded-full">
-                        <div class="ml-3 flex-grow">
-                            <p class="text-sm font-medium">Admin</p>
-                            <p class="text-xs text-gray-400">admin@banque.fr</p>
-                        </div>
-                        <i data-lucide="chevron-up" class="w-5 h-5 transform transition-transform duration-200" id="profileChevron"></i>
-                    </button>
-
-                    <!-- Menu Profil -->
-                    <div id="profileMenu" class="absolute bottom-full left-0 w-full mb-2 bg-gray-800 rounded-lg shadow-lg hidden">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded-t-lg">
-                            <i data-lucide="user" class="w-4 h-4 inline-block mr-2"></i>
-                            Mon profil
-                        </a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">
-                            <i data-lucide="settings" class="w-4 h-4 inline-block mr-2"></i>
-                            Paramètres
-                        </a>
-                        <a 
-                            href="javascript:logout()" 
-                            class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700 rounded-b-lg"
-                        >
-                            <i data-lucide="log-out" class="w-4 h-4 inline-block mr-2"></i>
-                            Déconnexion
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
         <!-- Main Content -->
         <div class="flex-1">
             <!-- Top Navigation -->
             <div class="bg-white shadow">
                 <div class="px-8 py-4 flex items-center justify-between">
-                    <h2 class="text-xl font-semibold text-gray-800">Gestion des Clients</h2>
+                    <h2 class="text-xl font-semibold text-gray-800 ml-2">Gestion des Clients</h2>
                     <button 
                         onclick="toggleAddClientModal()"
                         class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center"
@@ -202,19 +111,6 @@
                                         <div class="text-sm text-gray-900">Il y a 2 heures</div>
                                         <div class="text-sm text-gray-500">Virement sortant</div>
                                     </td>
-                                    <td class="p-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-blue-600 hover:text-blue-900">
-                                                <i data-lucide="eye" class="w-5 h-5"></i>
-                                            </button>
-                                            <button class="text-gray-600 hover:text-gray-900">
-                                                <i data-lucide="edit" class="w-5 h-5"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900">
-                                                <i data-lucide="lock" class="w-5 h-5"></i>
-                                            </button>
-                                        </div>
-                                    </td>
                                 </tr>
 
                                 <!-- Client 2 -->
@@ -244,19 +140,6 @@
                                     <td class="p-3">
                                         <div class="text-sm text-gray-900">Hier</div>
                                         <div class="text-sm text-gray-500">Création compte</div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-blue-600 hover:text-blue-900">
-                                                <i data-lucide="eye" class="w-5 h-5"></i>
-                                            </button>
-                                            <button class="text-gray-600 hover:text-gray-900">
-                                                <i data-lucide="edit" class="w-5 h-5"></i>
-                                            </button>
-                                            <button class="text-green-600 hover:text-green-900">
-                                                <i data-lucide="check-circle" class="w-5 h-5"></i>
-                                            </button>
-                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -439,30 +322,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Pagination -->
-                        <div class="flex items-center justify-between mt-6">
-                            <div class="text-sm text-gray-700">
-                                Affichage de 1 à 10 sur 45 clients
-                            </div>
-                            <div class="flex space-x-2">
-                                <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-50">
-                                    Précédent
-                                </button>
-                                <button class="px-3 py-1 border bg-blue-50 text-blue-600 rounded">
-                                    1
-                                </button>
-                                <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-50">
-                                    2
-                                </button>
-                                <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-50">
-                                    3
-                                </button>
-                                <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-50">
-                                    Suivant
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -470,7 +329,7 @@
     </div>
 
     <script>
-        lucide.createIcons();
+
             // Toggle Sidebar Mobile
     function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
