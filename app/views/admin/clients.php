@@ -1,8 +1,4 @@
-
-<?php
-include '../partials/admin/sidebar.php';
-?>
-
+<?php include __DIR__ . '/../partials/admin/sidebar.php'; ?>
         <!-- Main Content -->
         <div class="flex-1">
             <!-- Top Navigation -->
@@ -83,19 +79,22 @@ include '../partials/admin/sidebar.php';
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
+                                <?php foreach($users as $user): ?>
                                 <!-- Client 1 -->
                                 <tr class="hover:bg-gray-50">
                                     <td class="p-3">
                                         <div class="flex items-center">
-                                            <img src="/api/placeholder/40/40" alt="Thomas Robert" class="w-10 h-10 rounded-full">
+                                            <img src="<?php echo $user["profile_pic"] ?>" alt="Thomas Robert" class="w-10 h-10 rounded-full">
                                             <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Thomas Robert</div>
-                                                <div class="text-sm text-gray-500">ID: #45789</div>
+                                                <div class="text-sm font-medium text-gray-900">
+                                                <h1><?php echo $user["name"] ?></h1>
+                                            </div>
+                                                <div class="text-sm text-gray-500">ID: <?php echo $user["id"] ?></div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="p-3">
-                                        <div class="text-sm text-gray-900">thomas@email.com</div>
+                                        <div class="text-sm text-gray-900"><?php echo $user["email"] ?></div>
                                         <div class="text-sm text-gray-500">06 12 34 56 78</div>
                                     </td>
                                     <td class="p-3">
@@ -112,36 +111,7 @@ include '../partials/admin/sidebar.php';
                                         <div class="text-sm text-gray-500">Virement sortant</div>
                                     </td>
                                 </tr>
-
-                                <!-- Client 2 -->
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3">
-                                        <div class="flex items-center">
-                                            <img src="/api/placeholder/40/40" alt="Marie Dubois" class="w-10 h-10 rounded-full">
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Marie Dubois</div>
-                                                <div class="text-sm text-gray-500">ID: #45790</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="text-sm text-gray-900">marie@email.com</div>
-                                        <div class="text-sm text-gray-500">06 98 76 54 32</div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="text-sm text-gray-900">1 compte</div>
-                                        <div class="text-sm text-gray-500">Courant</div>
-                                    </td>
-                                    <td class="p-3">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            En attente
-                                        </span>
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="text-sm text-gray-900">Hier</div>
-                                        <div class="text-sm text-gray-500">Création compte</div>
-                                    </td>
-                                </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
 
