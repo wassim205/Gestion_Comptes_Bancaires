@@ -21,6 +21,9 @@
                     <h1 class="font-bold text-3xl text-gray-900">Log In</h1>
                     <p>Enter your information to Log in</p>
                 </div>
+                <?php if (!empty($error)): ?>
+                    <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+                <?php endif; ?>
                 <form action="/login" method="post" class="space-y-6 ">
                     <!-- Email Input -->
                     <div>
