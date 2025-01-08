@@ -29,6 +29,22 @@ class AdminController extends BaseController {
 
 
 
+   public function compte()
+   {
+       // Your code here
+       return $this->renderAdmin('compte');
+   }
+   
+   public function transactions()
+   {
+       // Your code here
+       return $this->renderAdmin('transactions');
+   }
+   public function dashboard()
+   {
+       // Your code here
+       return $this->renderAdmin('index');
+   }
 
  
 

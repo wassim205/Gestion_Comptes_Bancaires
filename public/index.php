@@ -24,6 +24,9 @@ Route::get('/login', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'handleLogin']);
 Route::get('/Client' , [ClientController::class, 'index']);
 Route::get('/clients', [AdminController::class, 'getAllUsers']);
+Route::get('/compte', [AdminController::class, 'compte']);
+Route::get('/transactions', [AdminController::class, 'transactions']);
+Route::get('/index', [AdminController::class, 'dashboard']);
 
 
 

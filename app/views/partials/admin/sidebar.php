@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administration - Dashboard</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -31,19 +33,19 @@
 
                 <!-- Navigation -->
                 <nav class="mt-6 flex-grow">
-                    <a href="#" class="flex items-center w-full px-6 py-3 text-white bg-gray-800">
+                    <a href="index" class="flex items-center w-full px-6 py-3 text-white bg-gray-800">
                         <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
                         <span>Dashboard</span>
                     </a>
-                    <a href="clients.php" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
+                    <a href="clients" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
                         <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                         <span>Clients</span>
                     </a>
-                    <a href="compte.php" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
+                    <a href="compte" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
                         <i data-lucide="credit-card" class="w-5 h-5 mr-3"></i>
                         <span>Comptes</span>
                     </a>
-                    <a href="transactions.php" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
+                    <a href="transactions" class="flex items-center w-full px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
                         <i data-lucide="repeat" class="w-5 h-5 mr-3"></i>
                         <span>Transactions</span>
                     </a>
