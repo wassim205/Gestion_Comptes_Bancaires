@@ -41,3 +41,11 @@ INSERT INTO `users` ( `name`, `email`, `password`, `role`, `created_at` , `updat
 ('admin', 'admin@gmail.com', '$2y$10$t08pnC/MXhaUxgKrSyd.NOq.9/NSLfLetJdyU3//1bgwJe7cuSV1e', 'admin',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
 ('user1', 'user1@gmail.com', '$2y$10$t08pnC/MXhaUxgKrSyd.NOq.9/NSLfLetJdyU3//1bgwJe7cuSV1e', 'client',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
 ('user2', 'user2@gmail.com', '$2y$10$0oT/LEQ1k.knep9Xf5K.S.CiVhShih6jvwDbQFvW4Pzui5AKnzzMS', 'client',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+
+INSERT INTO accounts (user_id, account_type, balance)
+VALUES
+(1, 'epargne', 3000.00), -- User 1's "epargne" account
+(2, 'courant', 250.50),  -- User 2's "courant" account
+(3, 'courant', 500.75),  -- User 3's "courant" account
+(3, 'epargne', 750.25);  -- User 3's "epargne" account

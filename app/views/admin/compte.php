@@ -1,7 +1,5 @@
+<?php include __DIR__ . '/../partials/admin/sidebar.php'; ?>
 
-<?php
-include '../partials/admin/sidebar.php';
-?>
 
 <!-- Main Content -->
 <div class="flex-1">
