@@ -49,3 +49,6 @@ VALUES
 (2, 'courant', 250.50),  -- User 2's "courant" account
 (3, 'courant', 500.75),  -- User 3's "courant" account
 (3, 'epargne', 750.25);  -- User 3's "epargne" account
+
+ALTER TABLE users
+ADD COLUMN status ENUM('actif', 'inactif') NOT NULL DEFAULT 'inactif';

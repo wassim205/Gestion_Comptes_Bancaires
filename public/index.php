@@ -27,8 +27,7 @@ Route::get('/clients', [AdminController::class, 'getAllUsers']);
 Route::get('/compte', [AdminController::class, 'compte']);
 Route::get('/transactions', [AdminController::class, 'transactions']);
 Route::get('/index', [AdminController::class, 'dashboard']);
-
-
+Route::get('/admin/change-status/{userId}/{status}', [AdminController::class, 'changeStatus']);
 
 
 

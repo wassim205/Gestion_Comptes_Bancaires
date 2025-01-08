@@ -22,4 +22,13 @@ $stmt = $this->conn->prepare($query);
 }
 
 
+public function changeStatus($userId, $status) {
+    try {
+        $stmt = $this->conn->prepare("UPDATE users SET status = ? WHERE id = ?");
+        $stmt->execute([$status, $userId]);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
 }

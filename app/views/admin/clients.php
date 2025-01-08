@@ -72,7 +72,6 @@
                             <th class="p-3">Contact</th>
                             <th class="p-3">Comptes</th>
                             <th class="p-3">Statut</th>
-                            <th class="p-3">Dernière activité</th>
                             <th class="p-3">Actions</th>
                         </tr>
                     </thead>
@@ -99,13 +98,24 @@
                                     <div class="text-sm text-gray-500"><?php echo $user["account_types"] ?></div>
                                 </td>
                                 <td class="p-3">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Actif
-                                    </span>
+                                    <form action="">
+                                        <a href="/admin/change-status/<?php echo $user["id"]; ?>/<?php echo ($user["status"] == "actif") ? "inactif" : "actif"; ?>">
+                                            <?php if ($user["status"] == "actif"): ?>
+                                                <span class="user-status cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    <?php echo $user["status"]; ?>
+                                                </span>
+                                            <?php elseif ($user["status"] == "inactif"): ?>
+                                                <span class="user-status cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    <?php echo $user["status"]; ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </a>
+                                        </button>
+                                    </form>
                                 </td>
-                                <td class="p-3">
-                                    <div class="text-sm text-gray-900">Il y a 2 heures</div>
-                                    <div class="text-sm text-gray-500">Virement sortant</div>
+                                <td>
+                                    <button class="px-2 text-md font-semibold text-blue-800">Edit</button>
+                                    <button class="px-2 text-md font-semibold text-red-800">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
