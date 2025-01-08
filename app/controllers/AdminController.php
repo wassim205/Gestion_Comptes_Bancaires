@@ -51,4 +51,16 @@ class AdminController extends BaseController
         header("Location: /clients");
         exit;
     }
+    public function DeleteUser($userId)
+    {
+        $this->AdminModel->deleteUser($userId);
+        header("Location: /clients");
+        exit;
+    }
+    // public function EditUser($userId, $status)
+    // {
+
+    // }
+
+
 }

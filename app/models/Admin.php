@@ -30,5 +30,13 @@ public function changeStatus($userId, $status) {
         echo "Error: " . $e->getMessage();
     }
 }
+public function deleteUser($userId) {
+    try {
+        $stmt = $this->conn->prepare("DELETE FROM users WHERE id = ?");
+        $stmt->execute([$userId]);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
 
 }

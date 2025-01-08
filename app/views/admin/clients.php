@@ -114,8 +114,10 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <button class="px-2 text-md font-semibold text-blue-800">Edit</button>
-                                    <button class="px-2 text-md font-semibold text-red-800">Delete</button>
+                                    <form action="">
+                                        <button class="px-2 text-md font-semibold text-blue-800">Edit</button>
+                                        <a href="/admin/deleteUser/<?php echo $user["id"]; ?>" class="px-2 text-md font-semibold text-red-800">Delete</a>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
