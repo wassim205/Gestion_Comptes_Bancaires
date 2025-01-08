@@ -52,3 +52,6 @@ VALUES
 
 ALTER TABLE users
 ADD COLUMN status ENUM('actif', 'inactif') NOT NULL DEFAULT 'inactif';
+
+ALTER TABLE accounts
+ADD COLUMN account_status ENUM('actif', 'inactif') NOT NULL DEFAULT 'actif';
