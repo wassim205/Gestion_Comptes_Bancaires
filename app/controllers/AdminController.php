@@ -1,31 +1,66 @@
-<?php 
-require_once (__DIR__.'/../models/User.php');
+<?php
+require_once(__DIR__ . '/../models/User.php');
+require_once(__DIR__ . "/../models/Admin.php");
 
-class AdminController extends BaseController {
-    private $UserModel ;
-    public function __construct(){
+class AdminController extends BaseController
+{
+    private $AdminModel;
+    public function __construct()
+    {
 
-        $this->UserModel = new User();
-  
-        
-     }
+        $this->AdminModel = new Admin();
+    }
 
-   public function index() {
-      
-      if(!isset($_SESSION['user_loged_in_id'])){
-         header("Location: /login ");
-         exit;
-      }
-    $this->renderAdmin('index');
-   }
-   
+    public function index()
+    {
+
+        if (!isset($_SESSION['user_loged_in_id'])) {
+            header("Location: /login ");
+            exit;
+        }
+        $this->renderAdmin('index');
+    }
+
+    public function compte()
+    {
+        // Your code here
+        return $this->renderAdmin('compte');
+    }
+
+    public function transactions()
+    {
+        // Your code here
+        return $this->renderAdmin('transactions');
+    }
+    public function dashboard()
+    {
+        // Your code here
+        return $this->renderAdmin('index');
+    }
+
+    public function getAllUsers()
+    {
+        $users = $this->AdminModel->getUsers();
+        $this->renderAdmin('clients', ['users' => $users]);
+    }
 
 
+    public function changeStatus($userId, $status)
+    {
+        $this->AdminModel->changeStatus($userId, $status);
+        header("Location: /clients");
+        exit;
+    }
+    public function DeleteUser($userId)
+    {
+        $this->AdminModel->deleteUser($userId);
+        header("Location: /clients");
+        exit;
+    }
+    // public function EditUser($userId, $status)
+    // {
 
+    // }
 
-
-
-
- 
 
 }

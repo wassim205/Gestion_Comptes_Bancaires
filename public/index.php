@@ -62,6 +62,14 @@ Route::post('/AlimenterSolde' , [TransactionController::class, 'alimenterSolde']
 // Admin Routes
 
 
+Route::get('/clients', [AdminController::class, 'getAllUsers']);
+Route::get('/compte', [AdminController::class, 'compte']);
+Route::get('/transactions', [AdminController::class, 'transactions']);
+Route::get('/index', [AdminController::class, 'dashboard']);
+Route::get('/admin/change-status/{userId}/{status}', [AdminController::class, 'changeStatus']);
+Route::get('/admin/deleteUser/{userId}', [AdminController::class, 'DeleteUser']);
+
+
 
 
 
