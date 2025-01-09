@@ -43,6 +43,7 @@ INSERT INTO `users` ( `name`, `email`, `password`, `role`, `created_at` , `updat
 ('user2', 'user2@gmail.com', '$2y$10$0oT/LEQ1k.knep9Xf5K.S.CiVhShih6jvwDbQFvW4Pzui5AKnzzMS', 'client',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 
+
 INSERT INTO accounts (user_id, account_type, balance)
 VALUES
 (1, 'epargne', 3000.00), -- User 1's "epargne" account

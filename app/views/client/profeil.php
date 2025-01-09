@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ma Banque - Profil</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
@@ -15,11 +16,11 @@
                 <h1 class="text-2xl font-bold text-blue-600">Ma Banque</h1>
             </div>
             <nav class="mt-6">
-                <a href="index.html" class="flex items-center w-full p-4 space-x-3 bg-blue-50 text-blue-600 border-r-4 border-blue-600">
+                <a href="/Client" class="flex items-center w-full p-4 space-x-3 text-gray-600 hover:bg-gray-50 ">
                     <i data-lucide="wallet"></i>
                     <span>Tableau de bord</span>
                 </a>
-                <a href="mcompte.html" class="flex items-center w-full p-4 space-x-3 text-gray-600 hover:bg-gray-50">
+                <a href="/mcompte" class="flex items-center w-full p-4 space-x-3 text-gray-600 hover:bg-gray-50">
                     <i data-lucide="credit-card"></i>
                     <span>Mes comptes</span>
                 </a>
@@ -35,7 +36,7 @@
                     <i data-lucide="history"></i>
                     <span>Historique</span>
                 </a>
-                <a href="profeil.html" class="flex items-center w-full p-4 space-x-3 text-gray-600 hover:bg-gray-50">
+                <a href="/profeil" class="flex items-center w-full p-4 space-x-3 bg-blue-50 text-blue-600 border-r-4 border-blue-600">
                     <i data-lucide="user"></i>
                     <span>Profil</span>
                 </a>
@@ -43,7 +44,9 @@
         </div>
 
         <!-- Main Content -->
+
         <div class="flex-1 p-8">
+
             <h2 class="text-2xl font-bold text-gray-800">Mon Profil</h2>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
@@ -51,14 +54,23 @@
                 <div class="lg:col-span-2">
                     <div class="bg-white rounded-lg shadow">
                         <div class="p-6">
+                            <!-- <h3 class="text-lg font-semibold text-green-500 mb-4">xxxxxxxxxxxxxxxxx</h3> -->
+
+                            <?php if(isset($profileSuccess)): ?>
+                                <h3 class="text-lg font-semibold text-green-500 mb-4"><?=$profileSuccess?></h3>
+                            <?php endif ; ?>
+                            <?php if(isset($profileError)): ?>
+                                <h3 class="text-lg font-semibold text-red-500 mb-4"><?=$profileError?></h3>
+                            <?php endif ; ?>
                             <h3 class="text-lg font-semibold text-gray-700 mb-4">Informations Personnelles</h3>
-                            <form class="space-y-6">
+
+                            <form action="/modifier_info" method="post" class="space-y-6">
                                 <!-- Photo de profil -->
                                 <div class="flex items-center space-x-6">
                                     <div class="relative">
                                         <img 
-                                            src="/api/placeholder/128/128" 
-                                            alt="Photo de profil"
+                                            src="<?php echo htmlspecialchars($userInfo["profile_pic"]); ?>" 
+                                            alt="<?php echo htmlspecialchars($userInfo["profile_pic"]); ?>"
                                             class="w-32 h-32 rounded-full object-cover"
                                         />
                                         <button 
@@ -82,14 +94,14 @@
                                 </div>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Civilité</label>
-                                        <select class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2">
-                                            <option>M.</option>
-                                            <option>Mme</option>
-                                        </select>
-                                    </div>
-
+                                     <!-- <div>
+                                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                                            <label for="file">Select Image:</label>
+                                            <input type="file" name="file" id="file" accept="image/*" required>
+                                            <button type="submit" name="submit">Upload</button>
+                                        </form>
+                                    </div> -->
+<!--
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Numéro client</label>
                                         <input 
@@ -98,21 +110,22 @@
                                             value="123456789" 
                                             class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2"
                                         />
-                                    </div>
+                                    </div> -->
 
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Nom</label>
                                         <input 
+                                        name="name"
                                             type="text" 
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-                                            value="Dupont"
+                                            value="<?php echo htmlspecialchars($userInfo["name"]); ?>"
                                         />
                                     </div>
 
-                                    <div>
+                                    <!-- <div>
                                         <label class="block text-sm font-medium text-gray-700">Prénom</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                             value="Jean"
                                         />
@@ -120,68 +133,69 @@
 
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Date de naissance</label>
-                                        <input 
-                                            type="date" 
+                                        <input
+                                            type="date"
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                             value="1990-01-01"
                                         />
-                                    </div>
-
+                                    </div> -->
+<!-- 
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Nationalité</label>
                                         <select class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2">
                                             <option>Française</option>
                                             <option>Autre</option>
                                         </select>
-                                    </div>
+                                    </div> -->
 
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Email</label>
                                         <input 
+                                        name="email"
                                             type="email" 
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-                                            value="jean.dupont@email.com"
+                                            value="<?php echo htmlspecialchars($userInfo["email"]); ?>"
                                         />
                                     </div>
 
-                                    <div>
+                                    <!-- <div>
                                         <label class="block text-sm font-medium text-gray-700">Téléphone</label>
                                         <input 
                                             type="tel" 
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                             value="06 12 34 56 78"
                                         />
-                                    </div>
+                                    </div> -->
                                 </div>
 
-                                <div>
+                                <!-- <div>
                                     <label class="block text-sm font-medium text-gray-700">Adresse</label>
                                     <input 
                                         type="text" 
                                         class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                         value="123 rue de la Paix"
                                     />
-                                </div>
+                                </div> -->
 
-                                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                <!-- <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                                     <div class="col-span-2 md:col-span-1">
-                                        <label class="block text-sm font-medium text-gray-700">Code postal</label>
+                                        <label class="block text-sm font-medium text-gray-700">Mot de Passe</label>
                                         <input 
                                             type="text" 
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-                                            value="75000"
+                                            value="<?php echo htmlspecialchars($userInfo["password"]); ?>"
                                         />
-                                    </div>
+                                    </div> -->
 
-                                    <div class="col-span-2 md:col-span-2">
+                                    <!-- <div class="col-span-2 md:col-span-2">
                                         <label class="block text-sm font-medium text-gray-700">Ville</label>
                                         <input 
                                             type="text" 
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                             value="Paris"
                                         />
-                                    </div>
-                                </div>
+                                    </div> -->
+                                <!-- </div> -->
 
                                 <div class="flex justify-end pt-4">
                                     <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
@@ -195,11 +209,18 @@
                     <!-- Sécurité -->
                     <div class="bg-white rounded-lg shadow mt-6">
                         <div class="p-6">
+                            <?php if(isset($securityError) && $securityError != ""): ?>
+                                <h3 class="text-lg font-semibold text-red-500 mb-4"><?=$securityError?></h3>
+                            <?php endif ; ?>
+                            <?php if(isset($securitySuccess) && $securitySuccess != "" ): ?>
+                                <h3 class="text-lg font-semibold text-green-500 mb-4"><?=$securitySuccess?></h3>
+                            <?php endif ; ?>
                             <h3 class="text-lg font-semibold text-gray-700 mb-4">Sécurité</h3>
-                            <form class="space-y-6">
+                            <form action="/modifier_password" method="post" class="space-y-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Mot de passe actuel</label>
-                                    <input 
+                                    <input
+                                        name="currentPassword"
                                         type="password" 
                                         class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                         placeholder="••••••••"
@@ -209,7 +230,9 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Nouveau mot de passe</label>
                                     <input 
-                                        type="password" 
+                                        name="newPassword"
+
+                                        type="password"
                                         class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                         placeholder="••••••••"
                                     />
@@ -217,7 +240,8 @@
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Confirmer le nouveau mot de passe</label>
-                                    <input 
+                                    <input
+                                        name="confirmPassword"
                                         type="password" 
                                         class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                                         placeholder="••••••••"
@@ -236,11 +260,11 @@
 
                 <!-- Paramètres et Préférences -->
                 <div class="lg:col-span-1">
-                    <div class="bg-white rounded-lg shadow">
+                    <!-- <div class="bg-white rounded-lg shadow">
                         <div class="p-6">
-                            <h3 class="text-lg font-semibold text-gray-700 mb-4">Préférences</h3>
-                            
-                            <div class="space-y-4">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">Préférences</h3> -->
+
+                            <!-- <div class="space-y-4">
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-700">Notifications</h4>
                                     <div class="mt-2 space-y-2">
@@ -286,10 +310,10 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="mt-6 pt-6 border-t">
-                                <button 
+                            <div class="mt-6 pt-6 ">
+                                <button
                                     type="button"
                                     class="flex items-center text-red-600 hover:text-red-800"
                                 >
@@ -297,9 +321,9 @@
                                     Supprimer mon compte
                                 </button>
                             </div>
-                        </div>
+                        <!-- </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
