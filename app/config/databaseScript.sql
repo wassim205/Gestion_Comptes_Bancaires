@@ -51,7 +51,7 @@ VALUES
 (3, 'epargne', 750.25);  -- User 3's "epargne" account
 
 ALTER TABLE users
-ADD COLUMN status ENUM('actif', 'inactif') NOT NULL DEFAULT 'inactif';
+ADD COLUMN status ENUM('actif', 'inactif') NOT NULL DEFAULT 'actif';
 
 ALTER TABLE accounts
 ADD COLUMN account_status ENUM('actif', 'inactif') NOT NULL DEFAULT 'actif';

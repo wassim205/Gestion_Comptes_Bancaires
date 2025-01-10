@@ -53,13 +53,15 @@ Route::get('/Client' , [ClientController::class, 'index']);
 
 
 Route::get('/clients', [AdminController::class, 'getAllUsers']);
+// Route::post('/clients', [AdminController::class, 'getAllUsers']);
 Route::get('/compte', [AdminController::class, 'compte']);
 Route::get('/transactions', [AdminController::class, 'transactions']);
 Route::get('/index', [AdminController::class, 'dashboard']);
 Route::get('/admin/change-status/{userId}/{status}', [AdminController::class, 'changeStatus']);
 Route::get('/admin/deleteUser/{userId}', [AdminController::class, 'DeleteUser']);
-
-
+Route::post('/admin/addingAUser', [AdminController::class, 'AddNewUser']);
+Route::get('/admin/editAccount/{id}', [AdminController::class, 'editUser']);
+Route::post('/admin/editAccount/', [AdminController::class, 'editUserAccount']);
 
 
 
