@@ -11,7 +11,7 @@ class AdminController extends BaseController
         $this->AdminModel = new Admin();
     }
 
-    public function index()
+    public function dashboard()
     {
 
         if (!isset($_SESSION['user_loged_in_id'])) {
@@ -31,11 +31,6 @@ class AdminController extends BaseController
     {
         // Your code here
         return $this->renderAdmin('transactions');
-    }
-    public function dashboard()
-    {
-        // Your code here
-        return $this->renderAdmin('index');
     }
 
     public function getAllUsers()
@@ -57,10 +52,44 @@ class AdminController extends BaseController
         header("Location: /clients");
         exit;
     }
-    // public function EditUser($userId, $status)
-    // {
 
-    // }
+    public function editUser($id)
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $this->AdminModel->updateUser($id, $name, $email);
+            header("Location: /clients");
+            exit;
+        }
+        $userAccounts = $this->AdminModel->getUserAccounts($id);
 
+        $user = $this->AdminModel->getUserId($id);
+        $this->renderAdmin('editUser', ['user' => $user, 'id' => $id, 'userAccounts' => $userAccounts]);
+    }
+
+    public function editUserAccount(){
+    
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = (int)$_POST['UserId'];
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $this->AdminModel->updateUser($id, $name, $email);
+            header("Location: /clients");
+            exit;
+        }
+    }
+    public function AddNewUser()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = $_POST['SecondName'] . ' ' . $_POST['FirstName'];
+            $email = $_POST['Email'];
+            $password = $_POST['password'];
+            $accountType = $_POST['account_type'];
+            $this->AdminModel->AddUser($name, $email, $password, $accountType);
+            header("Location: /clients");
+            exit;
+        }
+    }
 
 }

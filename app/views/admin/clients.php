@@ -1,4 +1,5 @@
 <?php include __DIR__ . '/../partials/admin/sidebar.php'; ?>
+
 <!-- Main Content -->
 <div class="flex-1">
     <!-- Top Navigation -->
@@ -27,37 +28,6 @@
                             class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-2"></i>
                     </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Statut</label>
-                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <option>Tous les statuts</option>
-                        <option>Actif</option>
-                        <option>Inactif</option>
-                        <option>En attente</option>
-                        <option>Bloqué</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Type de compte</label>
-                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <option>Tous les types</option>
-                        <option>Compte Courant</option>
-                        <option>Compte Épargne</option>
-                        <option>Compte Joint</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Trier par</label>
-                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <option>Date d'inscription</option>
-                        <option>Nom</option>
-                        <option>Solde</option>
-                        <option>Activité récente</option>
-                    </select>
                 </div>
             </div>
         </div>
@@ -115,7 +85,7 @@
                                 </td>
                                 <td>
                                     <form action="">
-                                        <button class="px-2 text-md font-semibold text-blue-800">Edit</button>
+                                        <a href="/admin/editAccount/<?php echo $user["id"]; ?>" id="editButton" onclick="ToggleEditMenu()" class="px-2 text-md font-semibold text-blue-800">Edit</a>
                                         <a href="/admin/deleteUser/<?php echo $user["id"]; ?>" class="px-2 text-md font-semibold text-red-800">Delete</a>
                                     </form>
                                 </td>
@@ -139,32 +109,14 @@
 
                             <!-- Modal Body -->
                             <div class="p-6">
-                                <form id="addClientForm" class="space-y-6">
+                                <form action="/admin/addingAUser" method="POST" id="addClientForm" class="space-y-6">
                                     <!-- Informations personnelles -->
                                     <div>
                                         <h4 class="text-base font-medium text-gray-900 mb-4">Informations personnelles</h4>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Civilité *</label>
-                                                <select required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                                    <option value="">Sélectionner</option>
-                                                    <option value="mr">M.</option>
-                                                    <option value="mme">Mme</option>
-                                                </select>
-                                            </div>
-
-                                            <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Numéro client</label>
-                                                <input
-                                                    type="text"
-                                                    readonly
-                                                    value="CLT-2024-0001"
-                                                    class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50">
-                                            </div>
-
-                                            <div>
                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
-                                                <input
+                                                <input name="SecondName"
                                                     type="text"
                                                     required
                                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -172,23 +124,22 @@
 
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Prénom *</label>
-                                                <input
+                                                <input name="FirstName"
                                                     type="text"
                                                     required
                                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Date de naissance *</label>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Date de naissance</label>
                                                 <input
                                                     type="date"
-                                                    required
                                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Nationalité *</label>
-                                                <select required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Nationalité</label>
+                                                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <option value="">Sélectionner</option>
                                                     <option value="fr">Française</option>
                                                     <option value="other">Autre</option>
@@ -203,43 +154,30 @@
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                                                <input
+                                                <input name="Email"
                                                     type="email"
                                                     required
                                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                             </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Password *</label>
+                                                <input name="password"
+                                                    type="password"
+                                                    required
+                                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone *</label>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone </label>
                                                 <input
                                                     type="tel"
-                                                    required
-                                                    pattern="[0-9]{10}"
+
                                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                             </div>
-
-                                            <div class="md:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Adresse *</label>
-                                                <input
-                                                    type="text"
-                                                    required
-                                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                            </div>
-
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Code postal *</label>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Code postal</label>
                                                 <input
                                                     type="text"
-                                                    required
-                                                    pattern="[0-9]{5}"
-                                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                            </div>
-
-                                            <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-1">Ville *</label>
-                                                <input
-                                                    type="text"
-                                                    required
                                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                             </div>
                                         </div>
@@ -251,7 +189,7 @@
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Type de compte *</label>
-                                                <select required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                <select name="account_type" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <option value="">Sélectionner</option>
                                                     <option value="courant">Compte Courant</option>
                                                     <option value="epargne">Compte Épargne</option>
@@ -269,23 +207,19 @@
                                             </div>
                                         </div>
                                     </div>
-
-
+                                    <!-- Modal Footer -->
+                                    <div class="flex justify-end space-x-3 p-6 border-t bg-gray-50">
+                                        <button
+                                            onclick="toggleAddClientModal()"
+                                            class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                                            Annuler
+                                        </button>
+                                        <button type="submit"
+                                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            Créer le compte
+                                        </button>
+                                    </div>
                                 </form>
-                            </div>
-
-                            <!-- Modal Footer -->
-                            <div class="flex justify-end space-x-3 p-6 border-t bg-gray-50">
-                                <button
-                                    onclick="toggleAddClientModal()"
-                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500">
-                                    Annuler
-                                </button>
-                                <button
-                                    onclick="submitAddClientForm()"
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    Créer le compte
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -296,61 +230,9 @@
 </div>
 </div>
 
-<script>
-    // Toggle Sidebar Mobile
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebarOverlay');
 
-        sidebar.classList.toggle('-translate-x-full');
-        overlay.classList.toggle('hidden');
-    }
 
-    // Toggle Profile Menu
-    function toggleProfileMenu() {
-        const menu = document.getElementById('profileMenu');
-        const chevron = document.getElementById('profileChevron');
 
-        menu.classList.toggle('hidden');
-        chevron.classList.toggle('rotate-180');
-    }
-
-    // Fonction de déconnexion
-    function logout() {
-        // Afficher un modal de confirmation
-        if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
-            // Rediriger vers la page de login
-            window.location.href = 'login.html';
-        }
-    }
-
-    // Fermer le menu profil si on clique ailleurs
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('profileMenu');
-        const profileButton = event.target.closest('button');
-
-        if (!profileButton && !menu.classList.contains('hidden')) {
-            menu.classList.add('hidden');
-            document.getElementById('profileChevron').classList.remove('rotate-180');
-        }
-    });
-
-    function toggleAddClientModal() {
-        const modal = document.getElementById('addClientModal');
-        modal.classList.toggle('hidden');
-    }
-
-    function submitAddClientForm() {
-        const form = document.getElementById('addClientForm');
-        if (form.checkValidity()) {
-            // Traitement du formulaire ici
-            alert('Client ajouté avec succès !');
-            toggleAddClientModal();
-        } else {
-            form.reportValidity();
-        }
-    }
-</script>
 </body>
 
 </html>
